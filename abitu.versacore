@@ -1,0 +1,28 @@
+# The idea is to run core_create() synchronously to configure the dependency tree
+# The other functions can be run asynchronously to speed up compilation.
+# The idea is to wrap the methods like this:
+
+# for dep in core.dependencies (do this asynchronously (using AsyncIO.wait_for() ?) so they run in parallel):
+#     await dep.get_generate(dep)
+# await core.generate(core)
+
+NAME = "abitu"
+VERSION = "0.0.1"
+API_VERSION = "0.1"
+DESCRIPTION = ""
+    
+def CREATE(core, kwarg1=False):
+    core.say_hello(f"abitu.CREATE: {kwarg1}")
+    #core.depend_on(name="yocore")
+
+async def GENERATE(core):
+    core.say_hello(f"abitu.GENERATE")
+
+async def CLEAN(core):
+    pass
+
+def GET_SOURCES(core):
+    pass
+
+async def PREPARE_SOURCES(core):
+    pass
