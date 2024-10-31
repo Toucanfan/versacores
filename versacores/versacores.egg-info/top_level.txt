@@ -1,0 +1,7 @@
+__init__
+__main__
+core
+exceptions
+simplhdlparser
+utils
+versacore

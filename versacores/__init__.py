@@ -1,0 +1,1 @@
+from .simplhdlparser import VersaCoreParser

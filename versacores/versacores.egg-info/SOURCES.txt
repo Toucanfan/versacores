@@ -1,0 +1,14 @@
+pyproject.toml
+src/__init__.py
+src/__main__.py
+src/core.py
+src/exceptions.py
+src/simplhdlparser.py
+src/utils.py
+src/versacore.py
+src/versacores.egg-info/PKG-INFO
+src/versacores.egg-info/SOURCES.txt
+src/versacores.egg-info/dependency_links.txt
+src/versacores.egg-info/entry_points.txt
+src/versacores.egg-info/requires.txt
+src/versacores.egg-info/top_level.txt

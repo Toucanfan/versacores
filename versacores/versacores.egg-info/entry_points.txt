@@ -1,0 +1,5 @@
+[console_scripts]
+versacores = versacores.__main__:main
+
+[simplhdl.plugins]
+parser = versacores
