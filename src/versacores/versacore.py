@@ -161,7 +161,7 @@ class VersaCore:
     fileset: FileSet
 
     def __init__(self, path: Path):
-        self.path = path
+        self.path = path.absolute()
         self.targets = []
         self.default_target = None
         self.dependencies = []
