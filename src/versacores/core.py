@@ -7,15 +7,11 @@ import traceback
 import logging
 from typing import Callable, Iterable, List
 
-from simplhdl.pyedaa import (
-    IPSpecificationFile, TCLSourceFile, CocotbPythonFile, SettingFile, File,
-    ConstraintFile, VHDLSourceFile, VerilogIncludeFile, SystemVerilogSourceFile,
-    EDIFNetlistFile, NetlistFile, CSourceFile, SourceFile, ChiselBuildFile)
 from simplhdl.pyedaa.fileset import FileSet
 
 from .views import TopView, CreateView, GenerateView
 from .exceptions import FatalError, CoreFileError
-from .utils import import_module_from_path
+from .utils import import_module_from_path, find_corefile
 
 logger = logging.getLogger(__name__)
 
@@ -33,6 +29,21 @@ class Core:
     default_target: Target
     dependencies: List['Core']
     fileset: FileSet
+
+    @classmethod
+    def from_path(cls, path: Path) -> 'Core':
+        if not path.is_file():
+            raise CoreFileError(f"The core file '{path}' does not exist")
+        core = cls(path)
+        return core
+
+    @classmethod
+    def from_name(cls, name: str, **filters) -> 'Core':
+        locations = filters.pop("locations", [Path.cwd()])
+        path = find_corefile(name, locations)
+        if not path:
+            raise CoreFileError(f"The core '{name}' cannot be found")
+        return cls.from_path(path)
 
     def __init__(self, path: Path):
         self.path = path.absolute()

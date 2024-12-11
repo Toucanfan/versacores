@@ -41,10 +41,7 @@ class CreateView(ViewBase):
         repo = kwargs.pop("repo", None)
         if not name:
             raise CoreFileError("Name of dependency not specified")
-        corefile = find_corefile(name, locations=[Path.cwd()])
-        if not corefile:
-            raise CoreFileError(f"The core '{name}' cannot be found")
-        core = Core(corefile)
+        core = Core.from_name(name)
         core.create(**kwargs)
         self._core.dependencies.append(core)
 

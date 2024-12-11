@@ -20,13 +20,13 @@ import logging
 import sys
 
 from .exceptions import CoreFileError
-from .versacore import VersaCore
+from .core import Core
 from .utils import get_top_core_path
 logger = logging.getLogger(__name__)
 
 def main():
     try:
-        top = VersaCore(get_top_core_path())
+        top = Core(get_top_core_path())
         top.top()
         asyncio.run(top.generate())
         return 0

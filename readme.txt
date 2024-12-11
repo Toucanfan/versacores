@@ -6,3 +6,6 @@ The core "repos" can be structured hierarchially. In this case, this will have t
 e.g. .depend_on("silicom/communication/i2c_controller")
 
 If a core from a specific repo is desired, the lookup mechanism can also be overriden in the call to .depend_on().
+
+It should be possible to generate a core on the command line, without hooking into the simpl flow.
+
